@@ -6,9 +6,9 @@ and secure remotely accessing infrastructure.
 
 ## Features
 
-- WireGuard VPN server configured on an Ubuntu VM
+- Lightweight VPN server configured on an Ubuntu VM
 - Easy client peer configuration
-- Start-up script for automation
+- Scripts for automating startup, Re-Keying, and Restarting Server
 - Tested and working end-to-end VPN setup
 - Launch-ready for Wireshark monitoring
 
@@ -50,9 +50,19 @@ Move the server config file: <br>
 Manually: <br>
 `sudo wg-quick up wg0`
 
-Or, use the provided start script: <br>
-`chmod +x start.sh`<br>
-`./start.sh`
-
 ### 7. Enable at Boot
 `sudo systemctl enable wg-quick@wg0`
+
+## Scripts: run within /main/ folder
+
+### Auto-ReKey: Create new private / public keys for secure VPN connection 
+`chmod +x scripts/rekey.sh`
+`./scripts/rekey.sh`
+
+### Auto-Restart: Retries starting VPN when the server connection is offline
+`chmod +x scripts/restart.sh`
+`./scripts/restart.sh`
+
+### Startup: Automatically start up server when server turns on <br>
+`chmod +x scripts/start.sh`<br>
+`./scripts/start.sh`
